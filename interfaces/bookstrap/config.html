@@ -491,8 +491,8 @@
                                         %for provider in lazylibrarian.NEWZNAB_PROV:
                                         <%
                                             checked = ''
-                                            if provider['ENABLED'] == true:
-                                                checked = 'checked="true'
+                                            if provider['ENABLED'] == True:
+                                                checked = 'checked="checked"'
                                         %>
                                         <div class="form-group">
                                             <label for="newznab_host${loop.index}" class="sr-only">Newznab Host</label>
@@ -500,7 +500,7 @@
                                                 <span class="input-group-addon">
                                                     <input type="checkbox" id="newznab${loop.index}" name="newznab${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host${loop.index}" name="newznab_host0" value="${provider['HOST']}" class="form-control">
+                                                <input type="text" placeholder="Newznab Host" id="newznab_host${loop.index}" name="newznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -516,8 +516,8 @@
                                         %for provider in lazylibrarian.TORZNAB_PROV:
                                         <%
                                             checked = ''
-                                            if provider['ENABLED'] == true:
-                                                checked = 'checked="true'
+                                            if provider['ENABLED'] == True:
+                                                checked = 'checked="checked"'
                                         %>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -541,8 +541,8 @@
                                         %for provider in lazylibrarian.RSS_PROV:
                                         <%
                                             checked = ''
-                                            if provider['ENABLED'] == true:
-                                                checked = 'checked="true'
+                                            if provider['ENABLED'] == True:
+                                                checked = 'checked="checked"'
                                         %>
                                         <div class="form-group">
                                             <label for="rss_host0" class="sr-only">RSS Host</label>
