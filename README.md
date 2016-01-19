@@ -10,4 +10,14 @@ Clone this into your LazyLibrarian data path and you should find "bookstrap" app
 
 ## Known issues
 
-As my focus is primarily oon books the magazine section is somewhat under developed at this stage.
+As my focus is primarily on books the magazine section is somewhat under developed at this stage.
+
+## Screenshots
+
+![screenshot](http://i.imgur.com/tYGhjs7.png)
+
+![screenshot](http://i.imgur.com/7tp8Vtj.png)
+
+![screenshot](http://i.imgur.com/6RsRPTY.png)
+
+![screenshot](http://i.imgur.com/HhzdDnD.png)
