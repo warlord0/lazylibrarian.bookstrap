@@ -1,0 +1,24 @@
+/*
+
+Bookstrap Styles
+*/
+
+body { overflow-y:scroll; }
+#authorart_menu img {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+    margin-right: 15px;
+    border: 1px solid grey;
+    padding: 5px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#subnav {
+/*    position: fixed; 
+    top: 60px; 
+    z-index: 1030; */
+    width: 100%; 
+    padding-top: 65px; 
+    padding-bottom: 5px; 
+    min-height: 46px;
+}

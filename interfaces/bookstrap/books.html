@@ -1,0 +1,172 @@
+<%inherit file="base.html" />
+<%!
+    import lazylibrarian
+%>
+
+<%def name="headerIncludes()">
+    <div id="subhead_container">
+        <form id="subhead_menu" class="form-inline">
+            <a id="forcesearch" class="btn btn-sm btn-primary" href="forceSearch?source=books">Force Search</a>
+            <a id="forcepostprocess" class="btn btn-sm btn-primary" href="forceProcess?source=books">Force Post-Processing</a>
+            %if len(languages) >= 1:
+                <div class="form-group pull-right">
+                    <label for="chooselanguage"><small>Language</small></label>
+                    <select class="form-control input-sm" id="chooselanguage" onchange="window.location = 'books?BookLang=' + this.options[this.selectedIndex].value">
+                        <option>Select</option>
+                        %for language in languages:
+                        <option value="${language['BookLang']}">${language['BookLang']}</option>
+                        %endfor
+                    </select>
+                </div>
+            %endif
+        </form>
+    </div>    
+</%def>
+
+<%def name="body()">
+    <h1>Books</h1>
+    <div class="indented">
+    <form action="markBooks" method="get" class="form-inline">
+        <div class="form-group">
+            <label for="action" class="">Mark selected books as</label>
+            <select class="markBooks form-control input-sm" id="action">
+                <option value="Wanted">Wanted</option>
+                <option value="Have">Have</option>
+                <option value="Remove">Remove</option>
+            </select>                
+        </div>
+        <input type="submit" class="markBooks btn btn-sm btn-primary" value="Go">
+    </form>
+    </div>
+    <p>&nbsp;</p>
+    <div class="table-responsive">
+    <table class="display table table-striped table-hover table-bordered" id="book_table">
+        <thead>
+            <tr>
+                <th class="select no-sort"><input type="checkbox" onClick="toggleAll(this)" /></th>
+                <th class="bookarttext-center no-sort hidden-xs">Cover</th>
+                <th class="authorname">Author</th>
+                <th class="bookname">Title</th>
+                <th class="series">Series</th>
+                <th class="seriesOrder text-center">Num</th>
+                <th class="stars text-center hidden-xs">Rating</th>
+                <th class="date text-center">Released</th>
+                <th class="language hidden">Language</th>
+                <th class="status text-center no-sort">Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        %for result in books:
+                <%
+                    if result['bookrate'] < 0.5:
+                        starimg = '0-stars.png'
+                    elif result['bookrate'] >= 0.5 and result['bookrate'] < 1.5:
+                        starimg = '1-stars.png'
+                    elif result['bookrate'] >= 1.5 and result['bookrate'] < 2.5:
+                        starimg = '2-stars.png'
+                    elif result['bookrate'] >= 2.5 and result['bookrate'] < 3.5:
+                        starimg = '3-stars.png'
+                    elif result['bookrate'] >= 3.5 and result['bookrate'] < 4.5:
+                        starimg = '4-stars.png'
+                    elif result['bookrate'] >= 4.5:
+                        starimg = '5-stars.png'
+                    else:
+                        starimg = '0-stars.png'
+                %>
+                <tr class="gradeZ">
+                    <td class="select"><input type="checkbox" name="${result['BookID']}" class="checkbox" /></td>
+                    <td class="bookart hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" alt="Cover" height="75" width="50"></a></td>
+                    <td class="authorname"><a href="authorPage?AuthorName=${result['AuthorName']|u}">${result['authorname']}</a></td>
+                    %if result['booksub']:
+                    <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
+                    <i class="smalltext">${result['booksub']}</i></td>
+                    %else:
+                    <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a></td>
+                    %endif
+                    <td class="series">${result['Series']}</td>
+                    <td class="seriesOrder text-center">${result['SeriesOrder']}</td>
+                    <td class="stars text-center hidden-xs"><img src="images/${starimg}" alt="Rating"></td>
+                    <td class="date text-center">${result['BookDate']}</td>
+                    <td class="language hidden text-center">${result['booklang']}</td>
+                    %if result['Status'] == 'Open':
+                    <td class="status"><a class="button green" href="openBook?bookid=${result['bookid']}" target="_self">${result['Status']}</a></td>
+                    %else:
+                        %if result['Status'] == 'Wanted':
+                    <td class="status text-center">
+                        <p><a class="a btn btn-xs btn-danger">${result['Status']}</a></p>
+                        <p><a class="b btn btn-xs btn-success" href="searchForBook?bookid=${result['BookID']}" target="_self"><i class="fa fa-search"></i> Search</a></p>
+                    </td>
+                        %else:
+                            %if result['Status'] == 'Snatched' or result['Status'] == 'Have':
+                    <td class="status text-center"><a class="button btn btn-xs btn-info">${result['Status']}</a></td>
+                            %else:
+                    <td class="status text-center"><a class="button btn btn-xs btn-default grey">${result['Status']}</a></td>
+                            %endif
+                        %endif
+                    %endif
+                </tr>
+        %endfor
+        </tbody>
+    </table>
+    </div>
+</%def>
+
+<%def name="headIncludes()">
+    
+</%def>
+
+<%def name="javascriptIncludes()">    
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+        $('#book_table').dataTable(
+            {
+                "order": [[ 2, 'asc' ]],
+                "columnDefs": 
+                    [{ targets: 'no-sort', orderable: false }]
+                ,
+                "oLanguage": {
+                    "sLengthMenu":"Show _MENU_ books per page",
+                    "sEmptyTable": "No books found",
+                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ books",
+                    "sInfoEmpty":"Showing 0 to 0 of 0 authors",
+                    "sInfoFiltered":"(filtered from _MAX_ total books)"},
+                "bStateSave": true,
+                "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
+                "iDisplayLength": 10,
+                "sPaginationType": "full_numbers",
+                "aaSorting": [[0, 'asc']],
+            });
+			$('.dataTables_filter input').attr("placeholder", "Search filter");
+    });        
+/*    $(document).ready(function() {
+        $('#book_table').dataTable(
+            {
+                "aoColumns": [
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                    ],
+                "oLanguage": {
+                    "sLengthMenu":"Show _MENU_ books per page",
+                    "sEmptyTable": "No books found",
+                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ results",
+                    "sInfoEmpty":"Showing 0 to 0 of 0 books",
+                    "sInfoFiltered":"(filtered from _MAX_ total books)"},
+                "bStateSave": true,
+                "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
+                "iDisplayLength": 10,
+                "sPaginationType": "full_numbers",
+            });
+			$('.dataTables_filter input').attr("placeholder", "Seach table here");
+    });*/
+    </script>
+</%def>
