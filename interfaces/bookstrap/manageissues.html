@@ -9,59 +9,66 @@
 </%def>
 
 <%def name="body()">
-    <br><br>
-
-    <form action="pastIssues" method="get">
-    Manage Issues with status <select name="whichStatus">
-        %for item in ['Skipped', 'Wanted', 'Snatched', 'Processed', 'Ignored']:
-            <option value="${item}"
-                %if whichStatus == item:
-                    selected = "selected"
-                %endif
-            >${item}</option>
-        %endfor
-    </select>
-    <input  class="btn" type="submit" value="Manage" />
+    <h1>Past Issues</h1>
+    
+    <form action="pastIssues" method="get" class="form-inline">
+        <div class="form-group">
+            <label for="whicStatus" class="control-label">Manage Issues with status: </label>
+            <select name="whichStatus" id="whichStatus" class="form-control input-sm">
+                %for item in ['Skipped', 'Wanted', 'Have', 'Snatched', 'Processed', 'Ignored']:
+                    <option value="${item}"
+                        %if whichStatus == item:
+                            selected = "selected"
+                        %endif
+                    >${item}</option>
+                %endfor
+            </select>
+    </div>
+    <input  class="btn btn-sm btn-primary" type="submit" value="Manage" />
     </form>
     %if len(issues) > 0:
     <h3>Magazines with status ${whichStatus}</h3>
         <br>
-    <form action="markPastIssues" method="get"><input type="hidden" name="redirect" value="manageissues">
-    <table class="display" id="book_table">
+    <form action="markPastIssues" method="get" class="form-inline">
+        <input type="hidden" name="redirect" value="manageissues">
+    <table class="display table table-striped table hover table-bordered" id="book_table">
         <thead>
             <tr>
-                <th id="select"><input type="checkbox" onClick="toggleAll(this)" /></th>
-                <th id="magtitle">Title</th>
-                <th id="lastacquired">NZBdate</th>
-                <th id="issuedate">Issue Date</th>
-                <th id="Provider">NZBprov</th>
-                <th id="status">Status</th>
+                <th class="select no-sort"><input type="checkbox" onClick="toggleAll(this)" /></th>
+                <th class="magtitle">Title</th>
+                <th class="lastacquired text-center">NZB&nbsp;Date</th>
+                <th class="issuedate text-center">Issue&nbsp;Date</th>
+                <th class="Provider">Provider</th>
+                <th class="status text-center">Status</th>
            </tr>
         </thead>
 
         <tbody>
         %for result in issues:
-                <tr class="gradeZ">
-                    <td id="select"><input type="checkbox" name="${result['NZBurl']}" class="checkbox" /></td>
-                    <td id="magtitle"><BR>${result['NZBtitle']}<BR><BR></td>
-                    <td id="lastacquired">${result['NZBdate']}</td>
-                    <td id="issuedate">${result['Auxinfo']}</td>
-                    <td id="provider">${result['NZBprov']}</td>
-                    <td id="status">${result['Status']}</td>
+                <tr>
+                    <td class="select"><input type="checkbox" name="${result['NZBurl']}" class="checkbox" /></td>
+                    <td class="magtitle">${result['NZBtitle']}</td>
+                    <td class="lastacquired text-center">${result['NZBdate']}</td>
+                    <td class="issuedate text-center">${result['Auxinfo']}</td>
+                    <td class="provider">${result['NZBprov']}</td>
+                    <td class="status text-center">${result['Status']}</td>
                 </tr>
         %endfor
         </tbody>
     </table>
     <p>
 
-    Change selected magazines to <select class="markPastIssues" name="action" style="margin-left:30px;margin-top:15px;margin-bottom:15px;">
-        %for item in ['Skipped', 'Wanted', 'Ignored', 'Delete']:
+        <div class="form-group">
+            <label class="control-label">Change selected magazines to:</label>
+            <select class="form-control input-sm" name="action">
+        %for item in ['Skipped', 'Wanted', 'Have', 'Ignored', 'Delete']:
             %if whichStatus != item:
                 <option value="${item}">${item}</option>
             %endif
         %endfor
             </select>
-        <input type="submit" class="markPastIssues" value="Go">
+        </div>
+        <button type="submit" class="btn btn-sm btn-default" id="markPastIssues" value="Go">Go</button>
     </p>
     </form>
     %endif
@@ -69,24 +76,18 @@
 </%def>
 
 <%def name="headIncludes()">
-    <link rel="stylesheet" href="css/data_table.css">
+    
 </%def>
 
-<%def name="javascriptIncludes()">
-    <script src="js/libs/jquery.dataTables.min.js"></script>
-    <script>
-    $(document).ready(function()
-    {
+<%def name="javascriptIncludes()">    
+    <script type="text/javascript">
+    $(document).ready(function() {
         $('#book_table').dataTable(
             {
-                "aoColumns": [
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                    ],
+                "order": [[ 1, 'asc']],
+                "columnDefs": 
+                    [{ targets: 'no-sort', orderable: false }]
+                ,
                 "oLanguage": {
                     "sLengthMenu":"Show _MENU_ magazines per page",
                     "sEmptyTable": "No matching issues found",
@@ -98,7 +99,7 @@
                 "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
                 "iDisplayLength": 10,
             });
-            $('.dataTables_filter input').attr("placeholder", "Seach table here");
+            $('.dataTables_filter input').attr("placeholder", "Search filter");
     });
     </script>
 </%def>

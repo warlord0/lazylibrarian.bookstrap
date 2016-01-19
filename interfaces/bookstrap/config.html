@@ -500,12 +500,12 @@
                                                 <span class="input-group-addon">
                                                     <input type="checkbox" id="newznab${loop.index}" name="newznab${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host${loop.index}" name="newznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
+                                                <input type="text" placeholder="Newznab Host #${loop.index}" id="newznab_host${loop.index}" name="newznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="newznab_api${loop.index}" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api${loop.index}" name="newznab_api${loop.index}" value="${provider['API']}" class="form-control">
+                                            <input type="text" placeholder="Newznab API #${loop.index}" id="newznab_api${loop.index}" name="newznab_api${loop.index}" value="${provider['API']}" class="form-control">
                                         </div>
                                         %endfor  
                                     </fieldset>
@@ -525,12 +525,12 @@
                                                 <span class="input-group-addon">
                                                     <input type="checkbox" id="torznab${loop.index}" name="torznab${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host${loop.index}" name="torznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
+                                                <input type="text" placeholder="Torznab Host #${loop.index+1}" id="torznab_host${loop.index}" name="torznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="torznab_api0" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api${loop.index}" name="torznab_api${loop.index}" value="${provider['API']}" class="form-control">
+                                            <input type="text" placeholder="Torznab API #${loop.index+1}" id="torznab_api${loop.index}" name="torznab_api${loop.index}" value="${provider['API']}" class="form-control">
                                         </div>
                                         %endfor
                                     </fieldset>
@@ -550,17 +550,17 @@
                                                 <span class="input-group-addon">
                                                 <input type="checkbox" id="rss${loop.index}" name="rss${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="RSS Host" id="rss_host${loop.index}" name="rss_host${loop.index}" value="${provider['HOST']}" class="form-control" />
+                                                <input type="text" placeholder="RSS Host #${loop.index+1}" id="rss_host${loop.index}" name="rss_host${loop.index}" value="${provider['HOST']}" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="rss_user${loop.index}" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username" id="rss_user${loop.index}" name="rss_user${loop.index}" value="${provider['USER']}" class="form-control" />
+                                                <input type="text" placeholder="RSS Username #${loop.index+1}" id="rss_user${loop.index}" name="rss_user${loop.index}" value="${provider['USER']}" class="form-control" />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="rss_pass0" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password" id="rss_pass${loop.index}" name="rss_pass${loop.index}" value="${provider['PASS']}" class="form-control" />                            
+                                                <input type="text" placeholder="RSS Password #${loop.index+1}" id="rss_pass${loop.index}" name="rss_pass${loop.index}" value="${provider['PASS']}" class="form-control" />                            
                                             </div>
                                         </div>
                                         %endfor

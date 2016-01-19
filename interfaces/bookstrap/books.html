@@ -73,8 +73,9 @@
                         starimg = '5-stars.png'
                     else:
                         starimg = '0-stars.png'
+            
                 %>
-                <tr class="gradeZ">
+                <tr>
                     <td class="select"><input type="checkbox" name="${result['BookID']}" class="checkbox" /></td>
                     <td class="bookart hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" alt="Cover" height="75" width="50"></a></td>
                     <td class="authorname"><a href="authorPage?AuthorName=${result['AuthorName']|u}">${result['authorname']}</a></td>
@@ -90,7 +91,7 @@
                     <td class="date text-center">${result['BookDate']}</td>
                     <td class="language hidden text-center">${result['booklang']}</td>
                     %if result['Status'] == 'Open':
-                    <td class="status"><a class="button green" href="openBook?bookid=${result['bookid']}" target="_self">${result['Status']}</a></td>
+                    <td class="status text-center"><a class="button green btn btn-xs btn-warning" href="openBook?bookid=${result['bookid']}" target="_self"><i class="fa fa-book"></i> ${result['Status']}</a></td>
                     %else:
                         %if result['Status'] == 'Wanted':
                     <td class="status text-center">

@@ -147,7 +147,7 @@
                     <td class="select"><input type="checkbox" name="${result['BookID']}" /></td>
                     <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" height="75" width="50" alt="Cover"></a></td>
                     %if result['booksub']:
-                        <class id="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
+                        <td class id="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
                         <i class="smalltext">${result['booksub']}</i></td>
                     %else:
                         <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a></td>
@@ -159,7 +159,7 @@
                     <td class="language text-center hidden-xs">${result['booklang']}</td>
 
                     %if result['Status'] == 'Open':
-                        <td class="status text-center"><a class="btn btn-xs btn-success button green" href="openBook?bookid=${result['bookID']}" target="_self">${result['Status']}</a></td>
+                        <td class="status text-center"><a class="btn btn-xs btn-warning button green" href="openBook?bookid=${result['bookID']}" target="_self"><i class="fa fa-book"></i> ${result['Status']}</a></td>
                     %else:
                         %if result['Status'] == 'Wanted':
                             <td class="status text-center">
@@ -221,7 +221,7 @@
                 "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
                 "iDisplayLength": 10,
             });
-			$('.dataTables_filter input').attr("placeholder", "Seach table here");
+			$('.dataTables_filter input').attr("placeholder", "Search filter");
     });
 </script>
 </%def>
