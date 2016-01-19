@@ -488,321 +488,82 @@
                                 <div class="col-md-4">
                                     <fieldset>
                                         <legend>Newznab Providers</legend>
+                                        %for provider in lazylibrarian.NEWZNAB_PROV:
                                         <%
-                                        if lazylibrarian.NEWZNAB0 == True:
-                                            checked = 'checked="checked"'
-                                        else:
                                             checked = ''
+                                            if provider['ENABLED'] == true:
+                                                checked = 'checked="true'
                                         %>
                                         <div class="form-group">
-                                            <label for="newznab_host0" class="sr-only">Newznab Host</label>
+                                            <label for="newznab_host${loop.index}" class="sr-only">Newznab Host</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <input type="checkbox" id="newznab0" name="newznab0" value="1" ${checked} />
+                                                    <input type="checkbox" id="newznab${loop.index}" name="newznab${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host0" name="newznab_host0" value="${lazylibrarian.NEWZNAB_HOST0}" class="form-control">
+                                                <input type="text" placeholder="Newznab Host" id="newznab_host${loop.index}" name="newznab_host0" value="${provider['HOST']}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="newznab_api0" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api0" name="newznab_api0" value="${lazylibrarian.NEWZNAB_API0}" class="form-control">
+                                            <label for="newznab_api${loop.index}" class="sr-only">Newznab API Key</label>
+                                            <input type="text" placeholder="Newznab API" id="newznab_api${loop.index}" name="newznab_api${loop.index}" value="${provider['API']}" class="form-control">
                                         </div>
-
-                                        <%
-                                        if lazylibrarian.NEWZNAB1 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="newznab_host1" class="sr-only">Newznab Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="newznab1" name="newznab1" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host1" name="newznab_host1" value="${lazylibrarian.NEWZNAB_HOST1}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newznab_api1" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api1" value="${lazylibrarian.NEWZNAB_API1}" class="form-control">
-                                        </div>
-
-                                        <%
-                                        if lazylibrarian.NEWZNAB2 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="newznab_host2" class="sr-only">Newznab Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="newznab2" name="newznab2" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host2" name="newznab_host2" value="${lazylibrarian.NEWZNAB_HOST2}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newznab_api2" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api2" name="newznab_api2" value="${lazylibrarian.NEWZNAB_API2}" class="form-control">
-                                        </div>
-
-                                        <%
-                                        if lazylibrarian.NEWZNAB3 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="newznab_host3" class="sr-only">Newznab Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="newznab3" name="newznab3" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host3" value="${lazylibrarian.NEWZNAB_HOST3}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newznab_api3" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api3" name="newznab_api3" value="${lazylibrarian.NEWZNAB_API3}" class="form-control">
-                                        </div>
-
-                                        <%
-                                        if lazylibrarian.NEWZNAB4 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="newznab_host4" class="sr-only">Newznab Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="newznab4" name="newznab4" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Newznab Host" id="newznab_host4" name="newznab_host4" value="${lazylibrarian.NEWZNAB_HOST4}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="newznab_api4" class="sr-only">Newznab API Key</label>
-                                            <input type="text" placeholder="Newznab API" id="newznab_api4" name="newznab_api4" value="${lazylibrarian.NEWZNAB_API4}" class="form-control">
-                                        </div>
-
-
+                                        %endfor  
                                     </fieldset>
                                 </div>
                                 <div class="col-md-4">
                                     <fieldset>
                                         <legend>Torznab Providers</legend>
+                                        %for provider in lazylibrarian.TORZNAB_PROV:
                                         <%
-                                        if lazylibrarian.TORZNAB0 == True:
-                                            checked = 'checked="checked"'
-                                        else:
                                             checked = ''
+                                            if provider['ENABLED'] == true:
+                                                checked = 'checked="true'
                                         %>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label for="torznab_host0" class="sr-only">Torznab Host</label>
+                                                <label for="torznab_host${loop.index}" class="sr-only">Torznab Host</label>
                                                 <span class="input-group-addon">
-                                                    <input type="checkbox" id="torznab0" name="torznab0" value="1" ${checked} />
+                                                    <input type="checkbox" id="torznab${loop.index}" name="torznab${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host0" name="torznab_host0" value="${lazylibrarian.TORZNAB_HOST0}" class="form-control">
+                                                <input type="text" placeholder="Torznab Host" id="torznab_host${loop.index}" name="torznab_host${loop.index}" value="${provider['HOST']}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="torznab_api0" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api0" name="torznab_api0" value="${lazylibrarian.TORZNAB_API0}" class="form-control">
+                                            <input type="text" placeholder="Torznab API" id="torznab_api${loop.index}" name="torznab_api${loop.index}" value="${provider['API']}" class="form-control">
                                         </div>
-
-                                        <%
-                                        if lazylibrarian.TORZNAB1 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <label for="torznab_host1" class="sr-only">Torznab Host</label>
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="torznab1" name="torznab1" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host1" name="torznab_host1" value="${lazylibrarian.TORZNAB_HOST1}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="torznab_api1" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api1" name="torznab_api1" value="${lazylibrarian.TORZNAB_API1}" class="form-control">
-                                        </div>                                
-
-                                        <%
-                                        if lazylibrarian.TORZNAB2 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <label for="torznab_host2" class="sr-only">Torznab Host</label>
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="torznab2" name="torznab2" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host2" name="torznab_host2" value="${lazylibrarian.TORZNAB_HOST2}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="torznab_api2" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api2" name="torznab_api2" value="${lazylibrarian.TORZNAB_API2}" class="form-control">
-                                        </div>  
-
-                                        <%
-                                        if lazylibrarian.TORZNAB3 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <label for="torznab_host3" class="sr-only">Torznab Host</label>
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="torznab3" name="torznab3" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host3" name="torznab_host3" value="${lazylibrarian.TORZNAB_HOST3}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="torznab_api3" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api3" name="torznab_api3" value="${lazylibrarian.TORZNAB_API3}" class="form-control">
-                                        </div>                                
-
-                                        <%
-                                        if lazylibrarian.TORZNAB4 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <label for="torznab_host4" class="sr-only">Torznab Host</label>
-                                                <span class="input-group-addon">
-                                                    <input type="checkbox" id="torznab4" name="torznab4" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="Torznab Host" id="torznab_host4" name="torznab_host4" value="${lazylibrarian.TORZNAB_HOST4}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="torznab_api0" class="sr-only">Torznab API Key</label>
-                                            <input type="text" placeholder="Torznab API" id="torznab_api4" name="torznab_api4" value="${lazylibrarian.TORZNAB_API4}" class="form-control">
-                                        </div>                                
-
-
+                                        %endfor
                                     </fieldset>
                                 </div>
                                 <div class="col-md-4">
-                                    <fieldset>
+                                <fieldset>
                                         <legend>RSS Providers</legend>
+                                        %for provider in lazylibrarian.RSS_PROV:
                                         <%
-                                        if lazylibrarian.RSS0 == True:
-                                            checked = 'checked="checked"'
-                                        else:
                                             checked = ''
+                                            if provider['ENABLED'] == true:
+                                                checked = 'checked="true'
                                         %>
                                         <div class="form-group">
                                             <label for="rss_host0" class="sr-only">RSS Host</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                <input type="checkbox" id="rss0" name="rss0" value="1" ${checked} />
+                                                <input type="checkbox" id="rss${loop.index}" name="rss${loop.index}" value="1" ${checked} />
                                                 </span>
-                                                <input type="text" placeholder="RSS Host" id="rss_host0" name="rss_host0" value="${lazylibrarian.RSS_HOST0}" class="form-control" />
+                                                <input type="text" placeholder="RSS Host" id="rss_host${loop.index}" name="rss_host${loop.index}" value="${provider['HOST']}" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label for="rss_user0" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username" id="rss_user0" name="rss_user0" value="${lazylibrarian.RSS_USER0}" class="form-control" />
+                                                <label for="rss_user${loop.index}" class="sr-only">RSS Username</label>
+                                                <input type="text" placeholder="RSS Username" id="rss_user${loop.index}" name="rss_user${loop.index}" value="${provider['USER']}" class="form-control" />
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="rss_pass0" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password" id="rss_pass0" name="rss_pass0" value="${lazylibrarian.RSS_PASS0}" class="form-control" />                            
+                                                <input type="text" placeholder="RSS Password" id="rss_pass${loop.index}" name="rss_pass${loop.index}" value="${provider['PASS']}" class="form-control" />                            
                                             </div>
                                         </div>
-
-                                        <%
-                                        if lazylibrarian.RSS1 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="rss_host1" class="sr-only">RSS Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                <input type="checkbox" id="rss1" name="rss1" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="RSS Host" id="rss_host1" name="rss_host1" value="${lazylibrarian.RSS_HOST1}" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_user1" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username" id="rss_user1" name="rss_user1" value="${lazylibrarian.RSS_USER1}" class="form-control" />
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_pass1" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password" id="rss_pass1" name="rss_pass1" value="${lazylibrarian.RSS_PASS1}" class="form-control" />                            
-                                            </div>
-                                        </div>  
-
-                                        <%
-                                        if lazylibrarian.RSS2 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="rss_host2" class="sr-only">RSS Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                <input type="checkbox" id="rss2" name="rss2" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="RSS Host" id="rss_host2" name="rss_host2" value="${lazylibrarian.RSS_HOST2}" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_user2" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username" id="rss_user2" name="rss_user2" value="${lazylibrarian.RSS_USER2}" class="form-control" />
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_pass2" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password" id="rss_pass2" name="rss_pass2" value="${lazylibrarian.RSS_PASS2}" class="form-control" />                            
-                                            </div>
-                                        </div> 
-
-                                        <%
-                                        if lazylibrarian.RSS3 == True:
-                                            checked = 'checked="checked"'
-                                        else:
-                                            checked = ''
-                                        %>
-                                        <div class="form-group">
-                                            <label for="rss_host3" class="sr-only">RSS Host</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                <input type="checkbox" id="rss3" name="rss3" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="RSS Host" id="rss_host3" name="rss_host3" value="${lazylibrarian.RSS_HOST3}" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_user3" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username" id="rss_user3" name="rss_user3" value="${lazylibrarian.RSS_USER3}" class="form-control" />
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_pass0" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password" id="rss_pass3" name="rss_pass3" value="${lazylibrarian.RSS_PASS3}" class="form-control" />                            
-                                            </div>
-                                        </div>
+                                        %endfor
                                     </fieldset>
                                     <fieldset>
                                         <legend>Torrent Providers</legend>                        

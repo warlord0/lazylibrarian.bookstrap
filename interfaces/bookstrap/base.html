@@ -26,7 +26,7 @@
     <link href="css/bookstrap.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.3.0.min.js"></script>
-    <!--<script src="js/script.js"></script>-->
+    <!--<script src="js/script.js"></script>-->    
     <script src="js/lazylibrarian-bs.js"></script>
     ${next.headIncludes()}
 
@@ -69,34 +69,11 @@
     <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10,b-1.1.0/datatables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap-notify.min.js"></script>
 
 </head>
 <body>
     <div id="container">
-        <div id="ajaxMsg"></div>
-            % if lazylibrarian.INSTALL_TYPE != 'win':
-            % if not lazylibrarian.CURRENT_VERSION:
-                    <div id="updatebar">
-                        You're running an unknown version of lazylibrarian. <a href="update">Update</a> or 
-                        <a href="#" onclick="$('#updatebar').slideUp('slow');">Close</a>
-                    </div>
-            % elif (lazylibrarian.INSTALL_TYPE == 'source' and lazylibrarian.CURRENT_VERSION == 'No Version File' ):
-                    <div id="updatebar">
-                        Running Unknown version via source install. Update from central area now <a href="update">Update</a> or 
-                        <a href="#" onclick="$('#updatebar').slideUp('slow');">Close</a>
-                    </div>      
-            % elif lazylibrarian.CURRENT_VERSION != lazylibrarian.LATEST_VERSION :
-            % if lazylibrarian.COMMITS_BEHIND < 0:
-                    <div id="updatebar">
-                        Running a local updated version. Push changes to GITHub or rollback to Master release
-                    </div>
-            % elif lazylibrarian.COMMITS_BEHIND > 0:
-                    <div id="updatebar">
-                        A <a href="http://github.com/DobyTang/LazyLibrarian/compare/${lazylibrarian.CURRENT_VERSION}...${lazylibrarian.LATEST_VERSION}" target="_blank"> newer version</a> is available. You're ${lazylibrarian.COMMITS_BEHIND} commits behind. <a href="update">Update</a> or <a href="#" onclick="$('#updatebar').slideUp('slow');">Close</a>
-                    </div>
-            % endif
-            % endif
-            % endif
                     
         <header>
             <nav class="navbar navbar-default navbar-fixed-top">
@@ -150,6 +127,36 @@
         </div>
     </div>
 
+<script type="text/javascript">    
+    msg = '';
+        % if lazylibrarian.INSTALL_TYPE != 'win':
+            % if not lazylibrarian.CURRENT_VERSION:    
+                msg = 'You\'re running an unknown version of lazylibrarian.<br/><a href="update" class="btn btn-xs btn-primary pull-right">Update</a>'
+            % elif (lazylibrarian.INSTALL_TYPE == 'source' and lazylibrarian.CURRENT_VERSION == 'No Version File' ):
+                msg = 'Running Unknown version via source install. Update from central area now <a href="update" class="btn btn-xs btn-primary pull-right">Update</a>
+            % elif lazylibrarian.CURRENT_VERSION != lazylibrarian.LATEST_VERSION:
+                msg = 'Not latest version'
+                % if lazylibrarian.COMMITS_BEHIND < 0:
+                    msg = 'Running a local updated version. Push changes to GITHub or rollback to Master release'
+                % else:
+                    msg = 'New version available. You are ${lazylibrarian.COMMITS_BEHIND} commits behind.<br/><a href="update" class="btn btn-xs btn-primary pull-right">Update</a>'
+                    //<a class="btn btn-xs btn-primary pull-right" href="http://github.com/DobyTang/LazyLibrarian/compare/${lazylibrarian.CURRENT_VERSION}...${lazylibrarian.LATEST_VERSION}" target="_blank">Click Here</a>'
+                % endif
+            % endif
+        % endif
+
+$(document).ready(function() {
+    if (msg != '') {
+        $.notify({
+            icon: 'fa fa-check-square-o',
+            message: msg
+        },{
+            type: 'warning'    
+        });
+    }
+});
+    
+</script>
     
 </body>
 </html>
