@@ -55,7 +55,7 @@
     <script>
     $(document).ready(function() {
         $('#log_table').dataTable({
-                "order": [[ 1, 'desc' ]],
+                "order": [[ 0, 'desc' ]],
                 "oLanguage": {
                     "sSearch":"",
                     "sLengthMenu":"Show _MENU_ lines per page",
@@ -87,20 +87,10 @@
                     });
                 }
             });
+            $('.dataTables_filter input').attr("placeholder", "Search filter");
         });
-        $('.dataTables_filter input').attr("placeholder", "Seach table here");
         
-        // dont keep refreshing the log table on mobile devices
-        var isiPad = navigator.userAgent.match(/iPad/i) != null;
-        // Why is the log page auto-refreshing in the first place?
+        
 
-        // if (!isiPad && !((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))))
-        // {
-        //     // Refresh the log table
-        //     setInterval(function() {
-        //         $('#log_table').dataTable().fnDraw();
-        //     }, 10000);
-        // }
-    
     </script>
 </%def>
