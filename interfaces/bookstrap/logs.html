@@ -55,11 +55,7 @@
     <script>
     $(document).ready(function() {
         $('#log_table').dataTable({
-                "aoColumns": [
-                    null,
-                    null,
-                    null
-                    ],
+                "order": [[ 1, 'desc' ]],
                 "oLanguage": {
                     "sSearch":"",
                     "sLengthMenu":"Show _MENU_ lines per page",

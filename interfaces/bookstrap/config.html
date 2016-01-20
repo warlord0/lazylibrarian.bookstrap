@@ -6,11 +6,13 @@
 <%def name="headerIncludes()">
     <div id="subhead_container">
         <div id="subhead_menu">
-            <a onclick="self.shutdownQA(this)" class="button btn btn-sm btn-danger"><i class="fa fa-power-off"></i> Shutdown</a>
-            <a class="button btn btn-sm btn-warning" onclick="self.restartQA(this, '', '')"><i class="fa fa-refresh"></i> Restart</a>
-            <a class="button btn btn-sm btn-primary" href="checkForUpdates"><i class="fa fa-check-square-o"></i> Check Version</a>
-            <a class="button btn btn-sm btn-primary" href="showJobs"><i class="fa fa-calendar-check-o"></i> Job Status</a>
-            <a class="button btn btn-sm btn-primary" href="restartJobs"><i class="fa fa-calendar-plus-o"></i> Restart Jobs</a>
+            <a onclick="self.shutdownQA(this)" class="button btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Terminate the LazyLibrarian process - Be careful if you're doing this remotely"><i class="fa fa-power-off"></i> Shutdown</a>
+            <a class="button btn btn-sm btn-warning" onclick="self.restartQA(this, '', '')" data-toggle="tooltip" data-placement="bottom" title="Restart LazyLibrarian"><i class="fa fa-refresh"></i> Restart</a>
+            <a class="button btn btn-sm btn-primary" href="checkForUpdates" data-toggle="tooltip" data-placement="bottom" title="Check for the latest release"><i class="fa fa-check-square-o"></i> Check Version</a>
+            <!-- Seemingly redundant
+            <a class="button btn btn-sm btn-primary" href="showJobs" data-toggle="tooltip" data-placement="bottom" title=""><i class="fa fa-calendar-check-o"></i> Job Status</a>
+            <a class="button btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="" href="restartJobs"><i class="fa fa-calendar-plus-o"></i> Restart Jobs</a>
+            -->
         </div>
     </div>
 </%def>

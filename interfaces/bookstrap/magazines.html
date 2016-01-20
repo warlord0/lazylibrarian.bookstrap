@@ -13,16 +13,25 @@
             <a href="forceProcess?source=magazines" class="button btn btn-sm btn-primary">Force Post-Processing</a>
             <a href="magazineScan" class="button btn btn-sm btn-primary"><i class="fa fa-flash"></i> Library Scan</a>
             <a href="pastIssues?whichStatus='Skipped'" class="button btn btn-sm btn-primary"><i class="fa fa-calendar"></i> Past Issues</a>
+            
             <div class="pull-right">
-                <input type="text" placeholder="Magazine Title" name="title" class="form-control input-sm">
-                <select name="frequency" class="form-control input-sm">
-                    <option value="Weekly">Weekly</option>
-                    <option value="BiWeekly">BiWeekly</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="BiMonthly">BiMonthly</option>
-                    <option value="Quarterly">Quarterly</option>
-                    <option value="Keyword">Keyword</option>
-                </select>
+                <div class="form-group">
+                    <label class="sr-only">Magazine Title</label>
+                    <input type="text" placeholder="Magazine Title" name="title" class="form-control input-sm">
+                </div>
+                <!--
+                <div class="form-group">                    
+                    <label class="sr-only">Frequency</label>
+                    <select name="frequency" class="form-control input-sm">
+                        <option value="Weekly">Weekly</option>
+                        <option value="BiWeekly">BiWeekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="BiMonthly">BiMonthly</option>
+                        <option value="Quarterly">Quarterly</option>
+                        <option value="Keyword">Keyword</option>
+                    </select>
+                </div>
+                -->
                 <button type="submit" value="Magazine" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Add and Search for Magazine"><i class="fa fa-search-plus"></i> Magazine</button>
             </div>
         </div>
@@ -54,7 +63,7 @@
                 <tr>
                     <th class="select no-sort"><input type="checkbox" onClick="toggleAll(this)" /></th>
                     <th class="magtitle">Title</th>
-                    <th class="frequency">Frequency</th>
+                    <!--<th class="frequency">Frequency</th>-->
                     <th class="seriesOrder">Num</th>
                     <th class="lastacquired">Acquired</th>
                     <th class="issuedate">Issue Date</th>
@@ -66,9 +75,9 @@
             <tbody>
             %for result in magazines:
                     <tr>
-                        <td class="select"><input type="checkbox" name="${result['Title']|u}" id="${result['Title']|u}" class="checkbox" /></td>
+                        <td class="select"><input type="checkbox" name="${result['Title']}" id="${result['Title']}" class="checkbox" /></td>
                         <td class="magtitle">${result['Title']}</td>
-                        <td class="frequency">${result['Frequency']}</td>
+                        <!--<td class="frequency">${result['Frequency']}</td>-->
                         <!-- <td id="regex"> -->      
                             <!-- <form action="updateRegex" method="get"><input type="hidden" name="title" value="${result['Title']}">-->
                                 <!-- <select name="regex">-->
