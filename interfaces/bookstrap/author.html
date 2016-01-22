@@ -145,7 +145,7 @@
                 %>
                 <tr>
                     <td class="select"><input type="checkbox" name="${result['BookID']}" /></td>
-                    <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" height="75" width="50" alt="Cover"></a></td>
+                    <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" class="bookcover-xs img-responsive" alt="Cover"></a></td>
                     %if result['booksub']:
                         <td class id="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
                         <i class="smalltext">${result['booksub']}</i></td>

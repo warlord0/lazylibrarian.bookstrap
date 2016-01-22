@@ -35,17 +35,16 @@
         			if percent > 100:
         				percent = 100
         			if percent <= 100:
-        				css = "<div class=\"progress-container success\">"
+        				css = 'success'
         			if percent <= 75:
-        				css = "<div class=\"progress-container info\">"
+        				css = 'info'
         			if percent <= 50:
-        				css = "<div class=\"progress-container warning\">"
+        				css = 'warning'
         			if percent <= 25:
-        				css = "<div class=\"progress-container danger\">"
+        				css = 'danger'
         		except (ZeroDivisionError, TypeError):
         			percent = 0
-        			totalbooks = '0'
-        			css = "<div class=\"progress-container danger\">"
+        			totalbooks = '0'        			
 
         		if author['Status'] == 'Paused':
         			grade = 'X'
@@ -57,7 +56,7 @@
                 <td class="date text-center">${author['LastDate']}</td>
                 <td class="have "><span title="${percent}" class="sr-only">${percent}% Complete</span>
                     <div class="progress center-block" style="width: 150px;">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" style="width: ${percent}%;">
+                        <div class="progress-bar-${css} progress-bar progress-bar-striped" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" style="width: ${percent}%;">
                             <span class="sr-only">${percent}% Complete</span><span class="progressbar-front-text">${havebooks}/${totalbooks}</span>
                         </div>                    
                     </div>                    				    

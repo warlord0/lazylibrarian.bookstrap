@@ -22,3 +22,11 @@ body { overflow-y:scroll; }
     padding-bottom: 5px; 
     min-height: 46px;
 }
+.bookcover-sm {
+    width: 100px;
+    margin: auto auto;
+}
+.bookcover-xs {
+    width: 50px;
+    margin: auto auto;
+}

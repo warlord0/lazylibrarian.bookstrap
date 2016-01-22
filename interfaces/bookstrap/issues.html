@@ -45,7 +45,7 @@
                 <tbody>
                 %for result in issues:
                         <tr>
-                            <td class="select"><input type="checkbox" name="${result['IssueFile']}" class="form-control" /></td>
+                            <td class="select"><input type="checkbox" name="${result['IssueID']}" class="form-control" /></td>
                             % if issues[0]['Cover'] != "images/nocover.png":
                             <td class="bookart"><a href="${result['Cover']}" target="_blank"><img src="${result['Cover']}" alt="cover"></a></td>
                             % else:
@@ -53,7 +53,7 @@
                             % endif
                             <td class="issuedate text-center">${result['IssueDate']}</td>
                             <td class="lastacquired text-center">${result['IssueAcquired']}</td>
-                            <td class="issue text-center"><a class="button green btn btn-xs btn-warning" href="openMag?bookid=${result['IssueFile']}" target="_self"><i class="fa fa-book"></i> Open</a></td>
+                            <td class="issue text-center"><a class="button green btn btn-xs btn-warning" href="openMag?bookid=${result['IssueID']}" target="_self"><i class="fa fa-book"></i> Open</a></td>
                         </tr>
                 %endfor
                 </tbody>

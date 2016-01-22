@@ -51,7 +51,7 @@
 
                 <tbody>
                 %for result in books:
-                        <tr class="gradeZ">
+                        <tr>
                             <td class="select text-center"><input type="checkbox" name="${result['BookID']}" class="checkbox" /></td>
                             <td class="authorname"><a href="authorPage?AuthorName=${result['AuthorName']}">${result['authorname']}</a></td>
                             %if result['booksub']:
