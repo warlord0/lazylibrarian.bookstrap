@@ -123,8 +123,30 @@
                                             <option value="${http_look}" ${selected}>${http_look}</option>
                                         %endfor
                                             </select>
+                                        </div>                                            
+                                        <div class="checkbox hidden"> <!-- Not really required? -->
+                                            <label for="bookstrap" class="control-label">
+                                            <input type="checkbox" name="use_bookstrap" id="bookstrap" value="1" ${checked} />
+                                                Use Bookstrap</label>
                                         </div>
+                                        <fieldset id="bookstrap_options">                                                                                       
+                                            <div class="form_group">
+                                                <label for="bookstrap_theme" class="control-label">Bookstrap Theme:</label>
+                                                <select name="bookstrap_theme" id="bookstrap_theme" class="form-control">
+                                                %for bookstrap_theme in lazylibrarian.BOOKSTRAP_THEMELIST:
+                                                    <%
+                                                        if bookstrap_theme == lazylibrarian.BOOKSTRAP_THEME:
+                                                            selected = 'selected="selected"'
+                                                        else:
+                                                            selected = ''
+                                                    %>
+                                                    <option value="${bookstrap_theme}" ${selected}>${bookstrap_theme}</option>
+                                                %endfor
+                                                </select>
+                                            </div>
+                                        </fieldset>                                            
                                     </fieldset>
+                                        
                                 </div>                
                             </div>
 
@@ -1548,7 +1570,18 @@
                         $("#testAndroidPN-result").html(data);
                     });
                 });
+            
+            $('#http_look').change(function() {
+                if ($(this).val() == 'bookstrap') {
+                    $('#bookstrap_options').removeClass("hidden");
+                } else {
+                    $('#bookstrap_options').addClass("hidden");
+                }
+            });
+            
         }
+        
+
 
         $(document).ready(function() {
             initThisPage();
