@@ -4,21 +4,25 @@
 %>
 
 <%def name="headerIncludes()">
-    <div id="subhead_container">
+    <div id="subhead_container" class="row">
         <form id="subhead_menu" class="form-inline">
-            <a id="forcesearch" class="btn btn-sm btn-primary" href="forceSearch?source=books">Force Search</a>
-            <a id="forcepostprocess" class="btn btn-sm btn-primary" href="forceProcess?source=books">Force Post-Processing</a>
+            <div class="col-xs-10">
+                <a id="forcesearch" class="btn btn-sm btn-primary" href="forceSearch?source=books">Force Search</a>
+                <a id="forcepostprocess" class="btn btn-sm btn-primary" href="forceProcess?source=books">Force Post-Processing</a>
+            </div>
+            <div class="col-xs-2">
             %if len(languages) >= 1:
-                <div class="form-group pull-right">
+                <div class="form-group">
                     <label for="chooselanguage"><small>Language</small></label>
                     <select class="form-control input-sm" id="chooselanguage" onchange="window.location = 'books?BookLang=' + this.options[this.selectedIndex].value">
-                        <option>Select</option>
+                        <option value="">All</option>
                         %for language in languages:
                         <option value="${language['BookLang']}">${language['BookLang']}</option>
                         %endfor
                     </select>
                 </div>
             %endif
+            </div>
         </form>
     </div>    
 </%def>
@@ -77,13 +81,13 @@
                     %>
                     <tr>
                         <td class="select"><input type="checkbox" name="${result['BookID']}" class="checkbox" /></td>
-                        <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" alt="Cover" class="bookcover-sm img-responsive"></a></td>
+                        <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank" rel="noreferrer"><img src="${result['bookimg']}" alt="Cover" class="bookcover-sm img-responsive"></a></td>
                         <td class="authorname"><a href="authorPage?AuthorName=${result['AuthorName']|u}">${result['authorname']}</a></td>
                         %if result['booksub']:
-                        <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
+                        <td class="bookname"><a href="${result['booklink']}" target="_blank" rel="noreferrer">${result['bookname']}</a><br>
                         <i class="smalltext">${result['booksub']}</i></td>
                         %else:
-                        <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a></td>
+                        <td class="bookname"><a href="${result['booklink']}" target="_blank" rel="noreferrer">${result['bookname']}</a></td>
                         %endif
                         <td class="series">${result['Series']}</td>
                         <td class="seriesOrder text-center">${result['SeriesOrder']}</td>
@@ -120,55 +124,39 @@
 
 <%def name="javascriptIncludes()">    
     <script type="text/javascript">
-    $(document).ready(function()
-    {
-        $('#book_table').dataTable(
-            {
-                "order": [[ 2, 'asc' ]],
-                "columnDefs": 
-                    [{ targets: 'no-sort', orderable: false }]
-                ,
-                "oLanguage": {
-                    "sLengthMenu":"Show _MENU_ books per page",
-                    "sEmptyTable": "No books found",
-                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ books",
-                    "sInfoEmpty":"Showing 0 to 0 of 0 authors",
-                    "sInfoFiltered":"(filtered from _MAX_ total books)"},
-                "bStateSave": true,
-                "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
-                "iDisplayLength": 10,
-                "sPaginationType": "full_numbers",
-                "aaSorting": [[0, 'asc']],
-            });
-			$('.dataTables_filter input').attr("placeholder", "Search filter");
-    });        
-/*    $(document).ready(function() {
-        $('#book_table').dataTable(
-            {
-                "aoColumns": [
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                    ],
-                "oLanguage": {
-                    "sLengthMenu":"Show _MENU_ books per page",
-                    "sEmptyTable": "No books found",
-                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ results",
-                    "sInfoEmpty":"Showing 0 to 0 of 0 books",
-                    "sInfoFiltered":"(filtered from _MAX_ total books)"},
-                "bStateSave": true,
-                "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
-                "iDisplayLength": 10,
-                "sPaginationType": "full_numbers",
-            });
-			$('.dataTables_filter input').attr("placeholder", "Seach table here");
-    });*/
+    $(document).ready(function() {
+        $('#book_table').dataTable({
+            "order": [[ 2, 'asc' ]],
+            "columnDefs": 
+                [{ targets: 'no-sort', orderable: false }]
+            ,
+            "oLanguage": {
+                "sLengthMenu":"_MENU_ rows per page",
+                "sEmptyTable": "No books found",
+                "sInfo":"Showing _START_ to _END_ of _TOTAL_ rows",
+                "sInfoEmpty":"Showing 0 to 0 of 0 rows",
+                "sInfoFiltered":"(filtered from _MAX_ total rows)"},
+            "bStateSave": true,
+            "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
+            "iDisplayLength": 10,
+            "sPaginationType": "full_numbers",
+            "aaSorting": [[0, 'asc']],
+        });
+        $('.dataTables_filter input').attr("placeholder", "Search filter");
+        
+        $('#chooselanguage').val(getUrlVars()['BookLang']);
+    });
+    
+    // Read a page's GET URL variables and return them as an associative array.
+	function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }        
     </script>
 </%def>

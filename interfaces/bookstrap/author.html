@@ -39,7 +39,7 @@
 
     <div id="authorhead_container" class="col-md-9">
         <div id="authorhead_menu">
-            <h1><a href="${author['AuthorLink']}" target="_blank">${author['AuthorName']}</a></h1>
+            <h1><a href="${author['AuthorLink']}" target="_blank" rel="noreferrer">${author['AuthorName']}</a></h1>
             %if author['AuthorDeath']:
             <p><b>Born:</b> ${author['AuthorBorn']}, <b>Died:</b> ${author['AuthorDeath']}</p>
             %else:
@@ -145,12 +145,12 @@
                 %>
                 <tr>
                     <td class="select"><input type="checkbox" name="${result['BookID']}" /></td>
-                    <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank"><img src="${result['bookimg']}" class="bookcover-xs img-responsive" alt="Cover"></a></td>
+                    <td class="bookart text-center hidden-xs"><a href="${result['bookimg']}" target="_blank" rel="noreferrer"><img src="${result['bookimg']}" class="bookcover-xs img-responsive" alt="Cover"></a></td>
                     %if result['booksub']:
-                        <td class id="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a><br>
+                        <td class id="bookname"><a href="${result['booklink']}" target="_blank" rel="noreferrer">${result['bookname']}</a><br>
                         <i class="smalltext">${result['booksub']}</i></td>
                     %else:
-                        <td class="bookname"><a href="${result['booklink']}" target="_blank">${result['bookname']}</a></td>
+                        <td class="bookname"><a href="${result['booklink']}" target="_blank" rel="noreferrer">${result['bookname']}</a></td>
                     %endif
                     <td class="series">${result['Series']}</td>
                     <td class="seriesOrder text-center">${result['SeriesOrder']}</td>
@@ -211,11 +211,11 @@
                     [{ targets: 'no-sort', orderable: false }] // Don't allow colums of class no-sort to be sorted
                 ,
                 "oLanguage": {
-                    "sLengthMenu":"Show _MENU_ books per page",
+                    "sLengthMenu":"_MENU_ rows per page",
                     "sEmptyTable": "No books found",
-                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ results",
-                    "sInfoEmpty":"Showing 0 to 0 of 0 books",
-                    "sInfoFiltered":"(filtered from _MAX_ total books)"},
+                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ rows",
+                    "sInfoEmpty":"Showing 0 to 0 of 0 rows",
+                    "sInfoFiltered":"(filtered from _MAX_ total rows)"},
                 "sPaginationType": "full_numbers",
                 "bStateSave": true,
                 "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],

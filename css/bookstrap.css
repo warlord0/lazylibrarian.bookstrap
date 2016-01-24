@@ -30,3 +30,10 @@ body { overflow-y:scroll; }
     width: 50px;
     margin: auto auto;
 }
+.table-responsive {
+    border: 0;
+}
+
+#subhead_container .form-group {
+    margin-bottom: 0;
+}

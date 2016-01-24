@@ -52,7 +52,7 @@
             %>
             <tr>
                 <td class="name"><span title="${author['AuthorName']}"></span><a href="authorPage?AuthorName=${author['AuthorName']|u}">${author['AuthorName']}</a></td>
-                <td class="bookname"><span title="${author['LastBook']}"></span><a href="${author['LastLink']}">${author['LastBook']}</a></td>
+                <td class="bookname"><span title="${author['LastBook']}"></span><a href="${author['LastLink']}" target="_blank" rel="noreferrer">${author['LastBook']}</a></td>
                 <td class="date text-center">${author['LastDate']}</td>
                 <td class="have "><span title="${percent}" class="sr-only">${percent}% Complete</span>
                     <div class="progress center-block" style="width: 150px;">
@@ -90,18 +90,18 @@
                     null
                 ],
                 "oLanguage": {
-                    "sLengthMenu":"Show _MENU_ authors per page",
+                    "sLengthMenu":"_MENU_ rows per page",
                     "sEmptyTable": "No authors found",
-                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ authors",
-                    "sInfoEmpty":"Showing 0 to 0 of 0 authors",
-                    "sInfoFiltered":"(filtered from _MAX_ total authors)"},
+                    "sInfo":"Showing _START_ to _END_ of _TOTAL_ rows",
+                    "sInfoEmpty":"Showing 0 to 0 of 0 rows",
+                    "sInfoFiltered":"(filtered from _MAX_ total rows)"},
                 "bStateSave": true,
                 "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
                 "iDisplayLength": 10,
                 "sPaginationType": "full_numbers",
                 "aaSorting": [[0, 'asc']],
             });
-			$('.dataTables_filter input').attr("placeholder", "Seach filter");
+			$('.dataTables_filter input').attr("placeholder", "Search filter");
     });
     </script>
 </%def>
