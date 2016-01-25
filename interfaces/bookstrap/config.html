@@ -9,10 +9,8 @@
             <a onclick="self.shutdownQA(this)" class="button btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Terminate the LazyLibrarian process - Be careful if you're doing this remotely"><i class="fa fa-power-off"></i> Shutdown</a>
             <a class="button btn btn-sm btn-warning" onclick="self.restartQA(this, '', '')" data-toggle="tooltip" data-placement="bottom" title="Restart LazyLibrarian"><i class="fa fa-refresh"></i> Restart</a>
             <a class="button btn btn-sm btn-primary" href="checkForUpdates" data-toggle="tooltip" data-placement="bottom" title="Check for the latest release"><i class="fa fa-check-square-o"></i> Check Version</a>
-            <!-- Seemingly redundant
-            <a class="button btn btn-sm btn-primary" href="showJobs" data-toggle="tooltip" data-placement="bottom" title=""><i class="fa fa-calendar-check-o"></i> Job Status</a>
-            <a class="button btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="" href="restartJobs"><i class="fa fa-calendar-plus-o"></i> Restart Jobs</a>
-            -->
+            <a class="button btn btn-sm btn-primary" href="showJobs" data-toggle="tooltip" data-placement="bottom" title="Job Status"><i class="fa fa-calendar-check-o"></i> Job Status</a>
+            <a class="button btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Restart Jobs" href="restartJobs"><i class="fa fa-calendar-plus-o"></i> Restart Jobs</a>
         </div>
     </div>
 </%def>
@@ -42,7 +40,7 @@
                                         <legend>Server Details</legend>
                                         <div class="form-group">
                                             <label for="http_host" class="control-label">Hostname:</label>
-                                            <input type="text" id="http_host" name="http_host" value="${lazylibrarian.HTTP_HOST}" class="form-control" placeholder="Hostname">                        
+                                            <input type="text" id="http_host" name="http_host" value="${lazylibrarian.HTTP_HOST}" class="form-control" placeholder="Hostname">
                                         </div>
                                         <div class="form-group">
                                             <label for="http_port" class="control-label">Port:</label>
@@ -108,7 +106,7 @@
                                             Launch browser</label>
                                         </div>
                                     </fieldset>
-                                    <fieldset>                            
+                                    <fieldset>
                                         <legend>Appearance</legend>
                                         <div class="form-group">
                                             <label for="http_look">Interface:</label>
@@ -123,13 +121,13 @@
                                             <option value="${http_look}" ${selected}>${http_look}</option>
                                         %endfor
                                             </select>
-                                        </div>                                            
+                                        </div>
                                         <div class="checkbox hidden"> <!-- Not really required? -->
                                             <label for="bookstrap" class="control-label">
                                             <input type="checkbox" name="use_bookstrap" id="bookstrap" value="1" ${checked} />
                                                 Use Bookstrap</label>
                                         </div>
-                                        <fieldset id="bookstrap_options">                                                                                       
+                                        <fieldset id="bookstrap_options">
                                             <div class="form_group">
                                                 <label for="bookstrap_theme" class="control-label">Bootswatch Theme:</label>
                                                 <select name="bookstrap_theme" id="bookstrap_theme" class="form-control">
@@ -144,13 +142,13 @@
                                                 %endfor
                                                 </select>
                                             </div>
-                                        </fieldset>                                            
+                                        </fieldset>
                                     </fieldset>
-                                        
-                                </div>                
+
+                                </div>
                             </div>
 
-                        </div>        
+                        </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="importoptions">
@@ -178,7 +176,7 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="gr_api">Goodreads API:</label>                            
+                                            <label for="gr_api">Goodreads API:</label>
                                             <input type="text" id="gr_api" name="gr_api" value="${lazylibrarian.GR_API}" class="form-control" placeholder="Goodreads API">
                                         </div>
                                     <div class="form-group">
@@ -192,7 +190,7 @@
                                         <label for="ebook_type" class="control-label">eBooks:</label>
                                         <input type="text" id="ebook_type" name="ebook_type" value="${lazylibrarian.EBOOK_TYPE}" class="form-control" placeholder="eBook file formats">
                                         <span class="help-block">Comma separated file extensions. Default: epub, mobi, pdf</span>
-                                    </div>                        
+                                    </div>
                                     <div class="form-group">
                                         <label for="mag_type" class="control-label">Magazines:</label>
                                         <input type="text" id="mag_type" name="mag_type" value="${lazylibrarian.MAG_TYPE}" class="form-control" placeholder="Magazine file formats">
@@ -223,7 +221,7 @@
                                     </fieldset>
                                 </div>
                             </div>
-                        </div>            
+                        </div>
                     </div>
 
                     <div role="tabpanel" class="tab-pane" id="downloadsettings">
@@ -243,7 +241,7 @@
                                             <input type="checkbox" id="use_nzb" name="use_nzb" value="1" ${checked} />
                                             Enable NZB and Torznab</label>
                                         </div>
-                                        <fieldset id="usenet_options">
+                                        <fieldset class="usenet_options">
                                             <div class="checkbox">
                                                 <%
                                                 if lazylibrarian.NZB_DOWNLOADER_SABNZBD == True:
@@ -494,7 +492,7 @@
                                             <legend>Download Settings</legend>
                                             <div class="form-group">
                                                 <label for="download_dir" class="control-label">Directory:</label>
-                                                <input type="text" id="download_dir" name="download_dir" value="${lazylibrarian.DOWNLOAD_DIR}" class="form-control" placeholder="Download Directory">                                
+                                                <input type="text" id="download_dir" name="download_dir" value="${lazylibrarian.DOWNLOAD_DIR}" class="form-control" placeholder="Download Directory">
                                                 <span class="help-block">Full path to the folder where books are downloaded</span>
                                             </div>
                                         </fieldset>
@@ -509,7 +507,7 @@
                     <div role="tabpanel" class="tab-pane" id="providers">
                         <div class="configtable">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4 usenet_options">
                                     <fieldset>
                                         <legend>Newznab Providers</legend>
                                         %for provider in lazylibrarian.NEWZNAB_PROV:
@@ -531,10 +529,10 @@
                                             <label for="newznab_api${loop.index}" class="sr-only">Newznab API Key</label>
                                             <input type="text" placeholder="Newznab API #${loop.index}" id="newznab_api${loop.index}" name="newznab_api${loop.index}" value="${provider['API']}" class="form-control">
                                         </div>
-                                        %endfor  
+                                        %endfor
                                     </fieldset>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 usenet_options">
                                     <fieldset>
                                         <legend>Torznab Providers</legend>
                                         %for provider in lazylibrarian.TORZNAB_PROV:
@@ -561,36 +559,62 @@
                                 </div>
                                 <div class="col-md-4">
                                 <fieldset>
+                                    <!--
+                                            <div class="row checkbox">
+                                                <%
+                                                if lazylibrarian.USE_RSS == True:
+                                                    checked = 'checked="checked"'
+                                                else:
+                                                    checked = ''
+                                                %>
+                                                <input type="checkbox" name="use_rss" id="rss" value="1" ${checked} />
+                                                <label>Enable RSS feed search</label>
+                                            </div>
+
+                                        <td>
+                                            <small>Current limitation: TORZNAB results are returned as magnet links
+                                            where possible, which may not work automatically with blackhole
+                                            </small>
+                                        </td>
+                                                -->
                                         <legend>RSS Providers</legend>
+                                        <div class="checkbox">
+                                            <label class="control-label">
+                                            <input type="checkbox" name="use_rss" id="use_rss" value="1" ${checked}/>
+                                            Enable <i class="fa fa-rss-square"></i> RSS feed search</label>
+                                            <span class="help-block">Current limitation: TORZNAB results are returned as magnet links where possible, which may not work automatically with blackhole</span>
+                                        </div>
+                                        <div id="rss_options">
                                         %for provider in lazylibrarian.RSS_PROV:
-                                        <%
-                                            checked = ''
-                                            if provider['ENABLED'] == True:
-                                                checked = 'checked="checked"'
-                                        %>
-                                        <div class="form-group">
-                                            <label for="rss_host0" class="sr-only">RSS URL</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                <input type="checkbox" id="rss${loop.index}" name="rss${loop.index}" value="1" ${checked} />
-                                                </span>
-                                                <input type="text" placeholder="RSS URL #${loop.index+1}" id="rss_host${loop.index}" name="rss_host${loop.index}" value="${provider['HOST']}" class="form-control" />
+                                            <%
+                                                checked = ''
+                                                if provider['ENABLED'] == True:
+                                                    checked = 'checked="checked"'
+                                            %>
+                                            <div class="form-group">
+                                                <label for="rss_host0" class="sr-only">RSS URL</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                    <input type="checkbox" id="rss${loop.index}" name="rss${loop.index}" value="1" ${checked} />
+                                                    </span>
+                                                    <input type="text" placeholder="RSS URL #${loop.index+1}" id="rss_host${loop.index}" name="rss_host${loop.index}" value="${provider['HOST']}" class="form-control" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_user${loop.index}" class="sr-only">RSS Username</label>
-                                                <input type="text" placeholder="RSS Username #${loop.index+1}" id="rss_user${loop.index}" name="rss_user${loop.index}" value="${provider['USER']}" class="form-control" />
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="rss_user${loop.index}" class="sr-only">RSS Username</label>
+                                                    <input type="text" placeholder="RSS Username #${loop.index+1}" id="rss_user${loop.index}" name="rss_user${loop.index}" value="${provider['USER']}" class="form-control" />
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="rss_pass0" class="sr-only">RSS Password</label>
+                                                    <input type="text" placeholder="RSS Password #${loop.index+1}" id="rss_pass${loop.index}" name="rss_pass${loop.index}" value="${provider['PASS']}" class="form-control" />
+                                                </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="rss_pass0" class="sr-only">RSS Password</label>
-                                                <input type="text" placeholder="RSS Password #${loop.index+1}" id="rss_pass${loop.index}" name="rss_pass${loop.index}" value="${provider['PASS']}" class="form-control" />                            
-                                            </div>
-                                        </div>
                                         %endfor
+                                        </div
                                     </fieldset>
                                     <fieldset>
-                                        <legend>Torrent Providers</legend>                        
+                                        <legend>Torrent Providers</legend>
                                         <%
                                         if lazylibrarian.KAT == True:
                                             checked = 'checked="checked"'
@@ -600,7 +624,7 @@
                                         <div class="form-group">
                                             <label for="kat_host" class="sr-only">KAT Host</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon">                                        
+                                                <span class="input-group-addon">
                                                     <input type="checkbox" id="kat" name="kat" value="1" ${checked} />
                                                 </span>
                                                 <input type="text" placeholder="KAT Host" id="kat_host" name="kat_host" value="${lazylibrarian.KAT_HOST}" class="form-control">
@@ -680,7 +704,7 @@
                                             <label for="destination_copy">
                                             <input type="checkbox" id="destination_copy" name="destination_copy" value="1" ${checked} />
                                             Keep original files</label>
-                                        </div>                                                        
+                                        </div>
                                         <div class="form-group">
                                             <label for="imp_autoadd">Calibre Auto Add:</label>
                                             <input type="text" id="imp_autoadd" name="imp_autoadd" value="${lazylibrarian.IMP_AUTOADD}" class="form-control">
@@ -695,7 +719,7 @@
                                             <input type="text" id="mag_dest_file" name="mag_dest_file" value="${lazylibrarian.MAG_DEST_FILE}" class="form-control" placeholder="Magazine Destination File">
                                             <span class="help-block">Options include $Title, $IssueDate, any string</span>
                                         </div>
-                                        <div class="checkbox">                        
+                                        <div class="checkbox">
                                             <%
                                             if lazylibrarian.MAG_RELATIVE == True:
                                                 checked = 'checked="checked"'
@@ -743,7 +767,7 @@
                                             %>
                                             <label for="full_scan" class="control-label">
                                             <input type="checkbox" id="full_scan" name="full_scan" value="1" ${checked} />
-                                            Full scan</label>                          
+                                            Full scan</label>
                                             <span class="help-block">This will remove entries if ebooks are not found in the download location</span>
                                         </div>
                                         <div class="checkbox">
@@ -755,7 +779,7 @@
                                             %>
                                             <label for="imp_singlebook" class="control-label">
                                             <input type="checkbox" id="imp_singlebook" name="imp_singlebook" value="1" ${checked} />
-                                            One book per directory</label>                              
+                                            One book per directory</label>
                                             <span class="help-block">This imports one book per directory, tick if you keep multiple formats of the same book in the same directory</span>
                                         </div>
                                         <div class="checkbox">
@@ -808,7 +832,7 @@
                     <div role="tabpanel" class="tab-pane" id="notifications">
                         <div class="configtable">
                         <div class="row">
-                            <div class="col-md-6">                                            
+                            <div class="col-md-6">
                                 <div class="checkbox">
                                 <%
                                 if lazylibrarian.USE_TWITTER == True:
@@ -852,14 +876,14 @@
                                             <label for="twitter_key" class="control-label">Twitter Key</label>
                                             <input type="text" id="twitter_key" name="twitter_key" value="" placeholder="Twitter Authorization Key" class="form-control" />
                                         </div>
-                                        <div class="form-group">        
+                                        <div class="form-group">
                                             <input type="button" value="Verify Key" id="twitterStep2" class="btn btn-default" />
                                         </div>
                                         <div class="form-group">
                                             <input type="button" value="Test Twitter" id="testTwitter" class="btn btn-default" />
                                         </div>
                                     </fieldset>
-                                </div>                    
+                                </div>
 
                                 <div class="checkbox">
                                 <%
@@ -886,7 +910,7 @@
                                             <input type="checkbox" id="boxcar_notify_onsnatch" name="boxcar_notify_onsnatch" value="1" ${checked} />
                                             Notify on snatch</label>
                                         </div>
-                                        <div class="checkbox">    
+                                        <div class="checkbox">
                                             <%
                                             if lazylibrarian.BOXCAR_NOTIFY_ONDOWNLOAD == True:
                                                 checked = 'checked="checked"'
@@ -929,7 +953,7 @@
                                             <input type="checkbox" id="pushbullet_notify_onsnatch" name="pushbullet_notify_onsnatch" value="1" ${checked} />
                                             Notify on snatch</label>
                                         </div>
-                                        <div class="checkbox">    
+                                        <div class="checkbox">
                                             <%
                                             if lazylibrarian.PUSHBULLET_NOTIFY_ONDOWNLOAD == True:
                                                 checked = 'checked="checked"'
@@ -947,15 +971,15 @@
                                         <div class="form-group">
                                             <label for="pushbullet_deviceid" class="control-label">Device ID</label>
                                             <input type="text" id="pushbullet_deviceid" name="pushbullet_deviceid" value="${lazylibrarian.PUSHBULLET_DEVICEID}" class="form-control" placeholder="Pushbullet DeviceID">
-                                        </div>                        
+                                        </div>
                                         <div class="form-group">
                                             <input type="button" value="Test Pushbullet" id="testPushbullet" class="btn btn-default">
                                         </div>
                                     </fieldset>
-                                 </div>                    
+                                 </div>
                             </div>
 
-                            <div class="col-md-6">                    
+                            <div class="col-md-6">
                                 <div class="checkbox">
                                     <%
                                     if lazylibrarian.USE_PUSHOVER == True:
@@ -1003,7 +1027,7 @@
                                         <div class="form-group">
                                             <label for="pushover_device" class="control-label">Pushover Device</label>
                                             <input type="text" id="pushover_device" value="${lazylibrarian.PUSHOVER_DEVICE}" class="form-control" placeholder="Pushover Device">
-                                        </div>                        
+                                        </div>
                                         <div class="form-group">
                                             <label for="pushover_priority" class="control-label">Pushover Priority</label>
                                             <input type="text" id="pushover_priority" name="pushover_priority" value="${lazylibrarian.PUSHOVER_PRIORITY}" class="form-control" placeholder="Pushover Priority">
@@ -1028,7 +1052,7 @@
                                 <div id="androidpnoptions">
                                     <fieldset>
                                         <legend>AndroidPN</legend>
-                                        <div class="checkbos">
+                                        <div class="checkbox">
                                             <%
                                             if lazylibrarian.ANDROIDPN_NOTIFY_ONSNATCH == True:
                                                 checked = 'checked="checked"'
@@ -1066,7 +1090,7 @@
                                             <input type="text" id="androidpn_url" name="androidpn_url" value="${lazylibrarian.ANDROIDPN_URL}" class="form-control" placeholder="AndroidPN Notification URL" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="androidpn_username" class="control-label">Username</label>                                       
+                                            <label for="androidpn_username" class="control-label">Username</label>
                                             <input type="text" id="androidpn_username" name="androidpn_username"  value="${lazylibrarian.ANDROIDPN_USERNAME}" class="form-control" placeholder="AndroidPN Username" /> 
                                         </div>
                                         <div class="form-group">
@@ -1171,27 +1195,29 @@
 </%def>
 
 <%def name="javascriptIncludes()">
-    <script>
+    <script type="text/javascript">
         function initThisPage()
 
         {
+            "use strict";
+            
             if ($("#use_nzb").is(":checked"))
                     {
-                            $("#usenet_options").show();
+                            $(".usenet_options").show();
                     }
             else
                     {
-                            $("#usenet_options").hide();
+                            $(".usenet_options").hide();
                     }
 
             $("#use_nzb").click(function(){
                     if ($("#use_nzb").is(":checked"))
                     {
-                            $("#usenet_options").slideDown();
+                            $(".usenet_options").slideDown();
                     }
                     else
                     {
-                            $("#usenet_options").slideUp();
+                            $(".usenet_options").slideUp();
                     }
             });
             if ($("#use_tor").is(":checked"))
@@ -1214,7 +1240,7 @@
                     }
             });
 
-            if ($("#rss").is(":checked"))
+            if ($("#use_rss").is(":checked"))
                     {
                             $("#rss_options").show();
                     }
@@ -1223,8 +1249,8 @@
                             $("#rss_options").hide();
                     }
 
-            $("#rss").click(function(){
-                    if ($("#rss").is(":checked"))
+            $("#use_rss").click(function(){
+                    if ($("#use_rss").is(":checked"))
                     {
                             $("#rss_options").slideDown();
                     }
