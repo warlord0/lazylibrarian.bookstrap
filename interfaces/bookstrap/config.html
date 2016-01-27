@@ -229,7 +229,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <legend>Usenet</legend>
+                                        <!--
+                                        <legend>Usenet</legend>                                        
                                         <div class="checkbox">
                                             <%
                                             if lazylibrarian.USE_NZB == True:
@@ -241,6 +242,7 @@
                                             <input type="checkbox" id="use_nzb" name="use_nzb" value="1" ${checked} />
                                             Enable NZB and Torznab</label>
                                         </div>
+                                        -->
                                         <fieldset class="usenet_options">
                                             <div class="checkbox">
                                                 <%
@@ -1201,6 +1203,7 @@
         {
             "use strict";
             
+/*
             if ($("#use_nzb").is(":checked"))
                     {
                             $(".usenet_options").show();
@@ -1220,6 +1223,7 @@
                             $(".usenet_options").slideUp();
                     }
             });
+*/
             if ($("#use_tor").is(":checked"))
                     {
                             $("#torrent_options").show();
