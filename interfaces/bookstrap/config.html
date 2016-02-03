@@ -9,8 +9,6 @@
             <a onclick="self.shutdownQA(this)" class="button btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Terminate the LazyLibrarian process - Be careful if you're doing this remotely"><i class="fa fa-power-off"></i> Shutdown</a>
             <a class="button btn btn-sm btn-warning" onclick="self.restartQA(this, '', '')" data-toggle="tooltip" data-placement="bottom" title="Restart LazyLibrarian"><i class="fa fa-refresh"></i> Restart</a>
             <a class="button btn btn-sm btn-primary" href="checkForUpdates" data-toggle="tooltip" data-placement="bottom" title="Check for the latest release"><i class="fa fa-check-square-o"></i> Check Version</a>
-            <a class="button btn btn-sm btn-primary" href="showJobs" data-toggle="tooltip" data-placement="bottom" title="Job Status"><i class="fa fa-calendar-check-o"></i> Job Status</a>
-            <a class="button btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Restart Jobs" href="restartJobs"><i class="fa fa-calendar-plus-o"></i> Restart Jobs</a>
         </div>
     </div>
 </%def>
@@ -143,6 +141,11 @@
                                                 </select>
                                             </div>
                                         </fieldset>
+                                        <br>
+                                        <div class="row">
+                                            <input class="button btn btn-sm btn-primary" type="button" value="Show Jobs" id="showJobs" />
+                                            <input class="button btn btn-sm btn-warning" type="button" value="Restart Jobs" id="restartJobs" />
+                                        </div>
                                     </fieldset>
 
                                 </div>
@@ -451,6 +454,38 @@
                                                 <div class="form-group">
                                                     <label for="utorrent_label" class="control-label">uTorrent Label:</label>
                                                     <input type="text" id="utorrent_label" name="utorrent_label" value="${lazylibrarian.UTORRENT_LABEL}" class="form-control" placeholder="uTorrent Label">
+                                                </div>
+                                            </fieldset>
+                                             <div class="checkbox">
+                                                <%
+                                                if lazylibrarian.TOR_DOWNLOADER_QBITTORRENT == True:
+                                                    checked = 'checked="checked"'
+                                                else:
+                                                    checked = ''
+                                                %>
+                                                <label for="tor_downloader_qbittorrent" class="control-label">
+                                                <input type="checkbox" id="tor_downloader_qbittorrent" name="tor_downloader_qbittorrent" value="1" ${checked} />
+                                                Use qBitTorrent</label>
+                                            </div>
+                                            <fieldset id="qbittorrent_options">
+                                                <legend>qBitTorrent</legend>
+                                                <div class="form-group">
+                                                    <label for="qbittorrent_host" class="control-label">qBitTorrent Host:</label>
+                                                    <input type="text" id="qbittorrent_host" name="qbittorrent_host" value="${lazylibrarian.QBITTORRENT_HOST}" class="form-control" placeholder="qBitTorrent Host">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="qbittorrent_user" class="control-label">Username:</label>
+                                                        <input type="text" id="qbittorrent_user" name="qbittorrent_user" value="${lazylibrarian.QBITTORRENT_USER}" class="form-control" placeholder="qBitTorrent Username">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Password:</label>
+                                                        <input type="password" id="qbittorrent_pass" name="qbittorrent_pass" value="${lazylibrarian.QBITTORRENT_PASS}" class="form-control" placeholder="qBitTorrent Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="qbittorrent_label" class="control-label">qBitTorrent Label:</label>
+                                                    <input type="text" id="qbittorrent_label" name="qbittorrent_label" value="${lazylibrarian.QBITTORRENT_LABEL}" class="form-control" placeholder="qBitTorrent Label">
                                                 </div>
                                             </fieldset>
                                             <div class="checkbox">
@@ -1244,6 +1279,26 @@
                     }
             });
 
+            if ($("#tor_downloader_qbittorrent").is(":checked"))
+                {
+                        $("#qbittorrent_options").show();
+                }
+            else
+                {
+                        $("#qbittorrent_options").hide();
+                }
+
+            $("#tor_downloader_qbittorrent").click(function(){
+                    if ($("#tor_downloader_qbittorrent").is(":checked"))
+                    {
+                            $("#qbittorrent_options").slideDown();
+                    }
+                    else
+                    {
+                            $("#qbittorrent_options").slideUp();
+                    }
+            });
+
             if ($("#nzb_downloader_blackhole").is(":checked"))
                 {
                         $("#nzb_blackhole_options").show();
@@ -1300,6 +1355,18 @@
                     {
                             $("#nzbget_options").slideUp();
                     }
+            });
+
+            $('#showJobs').click(function () {
+                $.get("showJobs",
+                    function (data) { alert(data); });
+                    
+            });
+            
+            $('#restartJobs').click(function () {
+                $.get("restartJobs",
+                    function (data) { alert(data); });
+                    
             });
 
             if ($("#use_twitter").is(":checked"))
@@ -1521,3 +1588,4 @@
         });
     </script>
 </%def>
+<html><head></head><body></body></html>

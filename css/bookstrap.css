@@ -37,3 +37,12 @@ body { overflow-y:scroll; }
 #subhead_container .form-group {
     margin-bottom: 0;
 }
+.progress {
+    height: auto;
+    zmin-height: 10px;
+}
+.progress .progress-bar {    
+    font-size: inherit;
+    line-height: inherit;
+    min-height: 10px;
+}
