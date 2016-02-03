@@ -143,8 +143,10 @@
                                         </fieldset>
                                         <br>
                                         <div class="row">
-                                            <input class="button btn btn-sm btn-primary" type="button" value="Show Jobs" id="showJobs" />
-                                            <input class="button btn btn-sm btn-warning" type="button" value="Restart Jobs" id="restartJobs" />
+                                            <div class="col-xs-12">
+                                                <button class="button btn btn-sm btn-primary" type="button" value="Show Jobs" id="showJobs"><i class="fa fa-list-ul"></i> Show Jobs</button>
+                                                <button class="button btn btn-sm btn-warning" type="button" value="Restart Jobs" id="restartJobs"><i class="fa fa-refresh"></i> Restart Jobs</button>
+                                            </div>
                                         </div>
                                     </fieldset>
 
@@ -1356,19 +1358,37 @@
                             $("#nzbget_options").slideUp();
                     }
             });
-
-            $('#showJobs').click(function () {
-                $.get("showJobs",
-                    function (data) { alert(data); });
-                    
+            
+            $('#showJobs').on('click', function(e) {
+                $.get('showJobs', function(data) {
+                    bootbox.dialog({
+                        title: 'Jobs Status',
+                        message: '<pre>'+data+'</pre>',
+                        buttons: {
+                            primary: {
+                                label: "Close",
+                                className: 'btn-primary'
+                            }
+                        }
+                    });
+                });
             });
             
-            $('#restartJobs').click(function () {
-                $.get("restartJobs",
-                    function (data) { alert(data); });
-                    
+            $('#restartJobs').on('click', function(e) {
+                $.get('restartJobs', function(data) {
+                    bootbox.dialog({
+                        title: 'Restarted Jobs',
+                        message: '<pre>'+data+'</pre>',
+                        buttons: {
+                            primary: {
+                                label: "Close",
+                                className: 'btn-primary'
+                            }
+                        }
+                    });
+                });
             });
-
+            
             if ($("#use_twitter").is(":checked"))
                     {
                             $("#twitteroptions").show();
@@ -1579,7 +1599,8 @@
                 }
             });
             
-        }
+            
+        } // End Init
         
 
 

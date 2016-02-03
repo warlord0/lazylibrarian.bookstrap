@@ -3,7 +3,6 @@
 Bookstrap Styles
 */
 
-body { overflow-y:scroll; }
 #authorart_menu img {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     margin-right: 15px;
@@ -39,10 +38,17 @@ body { overflow-y:scroll; }
 }
 .progress {
     height: auto;
-    zmin-height: 10px;
 }
 .progress .progress-bar {    
     font-size: inherit;
     line-height: inherit;
     min-height: 10px;
+}
+
+body.modal-open-noscroll {
+  margin-right: 0!important;
+  overflow: hidden;
+}
+.modal-open-noscroll .navbar-fixed-top, .modal-open .navbar-fixed-bottom {
+  margin-right: 0!important;
 }
