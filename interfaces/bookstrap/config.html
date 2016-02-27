@@ -241,6 +241,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <fieldset>
+                                        <legend>Usenet</legend>
                                         <fieldset class="usenet_options">
                                             <div class="checkbox">
                                                 <%
@@ -356,13 +357,7 @@
                                     <fieldset>
                                         <legend>Torrents</legend>
                                         <fieldset id="torrent_options">
-                                            <legend>Torrent Options</legend>
-                                            <div class="form-group">
-                                                <label for="numberofseeders" class="control-label">Minimum seeders:</label>
-                                                <input type="text" id="numberofseeders" name="numberofseeders" value="${lazylibrarian.NUMBEROFSEEDERS}" class="form-control" placeholder="Number of Seeders">
-                                                <span class="help-block">Number of minimum seeders a torrent must have to be accepted</span>
-                                            </div>
-                                             <div class="checkbox">
+                                            <div class="checkbox">
                                                 <%
                                                 if lazylibrarian.TOR_DOWNLOADER_DELUGE == True:
                                                     checked = 'checked="checked"'
@@ -508,9 +503,11 @@
                                                     <input type="text" id="torrent_dir" name="torrent_dir" value="${lazylibrarian.TORRENT_DIR}" class="form-control" placeholder="Torrent Blackhole Directory">
                                                 </div>
                                             </fieldset>
-                                        </fieldset>
-                                        <fieldset>
-                                            <legend>Download Settings</legend>
+                                            <div class="form-group">
+                                                <label for="numberofseeders" class="control-label">Minimum seeders:</label>
+                                                <input type="text" id="numberofseeders" name="numberofseeders" value="${lazylibrarian.NUMBEROFSEEDERS}" class="form-control" placeholder="Number of Seeders">
+                                                <span class="help-block">Number of minimum seeders a torrent must have to be accepted</span>
+                                            </div>
                                             <div class="form-group">
                                                 <label for="download_dir" class="control-label">Directory:</label>
                                                 <input type="text" id="download_dir" name="download_dir" value="${lazylibrarian.DOWNLOAD_DIR}" class="form-control" placeholder="Download Directory">
@@ -537,19 +534,26 @@
                                             if provider['ENABLED'] == True:
                                                 checked = 'checked="checked"'
                                         %>
+                                        <%
+                                            checked2 = ''
+                                            if provider['NZEDB'] == True:
+                                                checked2 = 'checked="checked"'
+                                        %>
                                         <div class="form-group">
-                                            <label for="newznab[${loop.index}][host]" class="sr-only">Newznab URL</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                     <input type="checkbox" id="newznab[${loop.index}][enabled]" name="newznab[${loop.index}][enabled]" value="1" ${checked} />
                                                 </span>
                                                 <input type="text" placeholder="Newznab URL #${loop.index}" id="newznab[${loop.index}][host]" name="newznab[${loop.index}][host]" value="${provider['HOST']}" class="form-control">
                                             </div>
+                                            <label for="newznab[${loop.index}][host]" class="sr-only">Newznab URL</label>
                                         </div>
                                         <div class="form-group">
                                             <label for="newznab[${loop.index}][api]" class="sr-only">Newznab API Key</label>
                                             <input type="text" placeholder="Newznab API #${loop.index}" id="newznab[${loop.index}][api]" name="newznab[${loop.index}][api]" value="${provider['API']}" class="form-control">
                                         </div>
+                                        <input type="checkbox" id="newznab[${loop.index}][nzedb]" name="newznab[${loop.index}][nzedb]" value="1" ${checked2} />
+                                        <label for="newznab[${loop.index}][nzedb]" class="control-label">Tick for nZEDb, blank for NewzNab+</label>
                                         %endfor
                                     </fieldset>
                                 </div>
@@ -738,7 +742,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <fieldset>
-                                        <legend>Cache</legend>
+                                        <legend>Miscellaneous</legend>
                                         <div class="form-group">
                                             <label for="cache_age" class="control-label">Cache expire after:</label>
                                             <div class="input-group">
