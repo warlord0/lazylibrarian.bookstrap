@@ -26,7 +26,7 @@
     </div>
     <input  class="btn btn-sm btn-primary" type="submit" value="Manage" />
     </form>
-    %if len(issues) > 0:
+
     <h3>Magazines with status ${whichStatus}</h3>
         <br>
     <form action="markPastIssues" method="get" class="form-inline">
@@ -42,7 +42,7 @@
                 <th class="status text-center">Status</th>
            </tr>
         </thead>
-
+<!--
         <tbody>
         %for result in issues:
                 <tr>
@@ -55,6 +55,7 @@
                 </tr>
         %endfor
         </tbody>
+-->
     </table>
     <p>
 
@@ -71,7 +72,6 @@
         <button type="submit" class="btn btn-sm btn-default" id="markPastIssues" value="Go">Go</button>
     </p>
     </form>
-    %endif
 
 </%def>
 
@@ -98,6 +98,11 @@
                 "bStateSave": true,
                 "aLengthMenu": [[5, 10, 15, 25, 50, 100, -1], [5, 10, 15, 25, 50, 100, "All"]],
                 "iDisplayLength": 10,
+                "aaSorting": [[1, 'asc']],
+                "bServerSide": true,
+                // need to pass requested status filter 
+                "sAjaxSource": 'getPastIssues?whichStatus=Skipped',
+                "bFilter": true,
             });
             $('.dataTables_filter input').attr("placeholder", "Search filter");
     });

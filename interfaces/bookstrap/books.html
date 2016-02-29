@@ -32,8 +32,8 @@
     <form action="markBooks" method="get" class="form-inline">
         <div class="indented">
         <div class="form-group">
-            <label for="action" class="">Mark selected books as</label>
-            <select class="markBooks form-control input-sm" id="action">
+            <label for="markBooks" class="control-label">Mark selected books as</label>
+            <select class="markBooks form-control input-sm" id="markBooks" name="action">
                 <option value="Wanted">Wanted</option>
                 <option value="Have">Have</option>
                 <option value="Remove">Remove</option>
@@ -55,11 +55,10 @@
                     <th class="seriesOrder text-center">Num</th>
                     <th class="stars text-center hidden-xs">Rating</th>
                     <th class="date text-center">Released</th>
-                    <th class="language hidden">Language</th>
                     <th class="status text-center no-sort">Status</th>
                 </tr>
             </thead>
-
+<!-- This section is unused now, we use server-side processing instead
             <tbody>
             %for result in books:
                     <%
@@ -93,7 +92,6 @@
                         <td class="seriesOrder text-center">${result['SeriesOrder']}</td>
                         <td class="stars text-center hidden-xs"><img src="images/${starimg}" alt="Rating"></td>
                         <td class="date text-center">${result['BookDate']}</td>
-                        <td class="language hidden text-center">${result['booklang']}</td>
                         %if result['Status'] == 'Open':
                         <td class="status text-center"><a class="button green btn btn-xs btn-warning" href="openBook?bookid=${result['bookid']}" target="_self"><i class="fa fa-book"></i> ${result['Status']}</a></td>
                         %else:
@@ -113,6 +111,7 @@
                     </tr>
             %endfor
             </tbody>
+-->
         </table>
         </div>
     </form>
@@ -141,6 +140,9 @@
             "iDisplayLength": 10,
             "sPaginationType": "full_numbers",
             "aaSorting": [[0, 'asc']],
+            "bServerSide": true,
+            "sAjaxSource": 'getBooks?BookLang="eng"',
+            "bFilter": true,
         });
         $('.dataTables_filter input').attr("placeholder", "Search filter");
         
